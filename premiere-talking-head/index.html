@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Talking Head Toolkit</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="panel">
+    <h1>Talking Head Toolkit</h1>
+    <p class="hint">Select your camera clip in the timeline, pick a layout, then Apply.</p>
+
+    <section>
+      <h2>Position</h2>
+      <div class="corner-grid" id="cornerGrid">
+        <button class="corner" data-corner="tl" title="Top left">◰</button>
+        <button class="corner" data-corner="tr" title="Top right">◳</button>
+        <button class="corner" data-corner="center" title="Center">▣</button>
+        <button class="corner" data-corner="bl" title="Bottom left">◱</button>
+        <button class="corner active" data-corner="br" title="Bottom right">◲</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Size</h2>
+      <div class="row">
+        <div class="seg" id="sizeSeg">
+          <button data-size="25">Small</button>
+          <button data-size="33" class="active">Medium</button>
+          <button data-size="45">Large</button>
+        </div>
+      </div>
+      <div class="row">
+        <label for="margin">Edge margin</label>
+        <input type="range" id="margin" min="0" max="10" step="1" value="4">
+        <span class="value" id="marginVal">4%</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Animation</h2>
+      <div class="row">
+        <select id="animIn">
+          <option value="none">None (static overlay)</option>
+          <option value="slide" selected>Slide in</option>
+          <option value="pop">Pop in</option>
+          <option value="fade">Fade in</option>
+          <option value="slidefade">Slide + fade in</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="duration">Duration</label>
+        <input type="range" id="duration" min="0.2" max="1.5" step="0.1" value="0.5">
+        <span class="value" id="durationVal">0.5s</span>
+      </div>
+      <div class="row checkbox">
+        <label><input type="checkbox" id="animOut" checked> Also animate out at clip end</label>
+      </div>
+      <div class="row checkbox">
+        <label><input type="checkbox" id="dropShadow"> Add drop shadow</label>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="applyBtn" class="primary">Apply Overlay</button>
+      <button id="resetBtn">Reset Clip</button>
+    </div>
+
+    <div id="status" class="status"></div>
+  </div>
+
+  <script src="js/CSInterface.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
