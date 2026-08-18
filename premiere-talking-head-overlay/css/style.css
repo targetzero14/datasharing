@@ -1,0 +1,219 @@
+/* Tuned to sit quietly next to Premiere's own dark UI. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 10px 12px;
+  font: 11px/1.45 -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #d6d6d6;
+  background: #262626;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0 7px;
+  position: sticky;
+  top: 0;
+  background: #262626;
+  z-index: 2;
+}
+
+.title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9a9a9a;
+}
+
+.context {
+  padding: 6px 8px;
+  margin-bottom: 8px;
+  border-radius: 3px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #9a9a9a;
+  font-size: 10px;
+  white-space: pre-wrap;
+}
+
+.context.ok { color: #b8ccb0; border-color: #3c4a38; }
+.context.warn { color: #e0c07a; border-color: #4d4229; }
+.context.err { color: #e39a9a; border-color: #4f3131; }
+
+.preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  background: #111;
+}
+
+.group {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.group:last-of-type { border-bottom: none; }
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.row label {
+  flex: 0 0 52px;
+  color: #a8a8a8;
+}
+
+.row input[type="range"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 3px;
+  -webkit-appearance: none;
+  background: #444;
+  border-radius: 2px;
+  outline: none;
+}
+
+.row input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #c8c8c8;
+  cursor: pointer;
+}
+
+.row input[type="range"]:hover::-webkit-slider-thumb { background: #fff; }
+
+.row output {
+  flex: 0 0 44px;
+  text-align: right;
+  color: #8f8f8f;
+  font-variant-numeric: tabular-nums;
+}
+
+.row input[type="color"] {
+  width: 34px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid #4a4a4a;
+  border-radius: 3px;
+  background: none;
+  cursor: pointer;
+}
+
+.hex {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 3px 6px;
+  color: #d6d6d6;
+  background: #1c1c1c;
+  border: 1px solid #444;
+  border-radius: 3px;
+  font-family: inherit;
+  text-transform: lowercase;
+}
+
+.row.check label {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #b4b4b4;
+  cursor: pointer;
+}
+
+.row.buttons {
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.chip {
+  flex: 1 1 auto;
+  padding: 4px 6px;
+  color: #c4c4c4;
+  background: #333;
+  border: 1px solid #454545;
+}
+
+.chip:hover { background: #3d3d3d; color: #fff; }
+
+.ghost {
+  padding: 3px 9px;
+  color: #a8a8a8;
+  background: transparent;
+  border: 1px solid #454545;
+}
+
+.ghost:hover { color: #fff; border-color: #666; }
+
+.actions { margin: 4px 0 10px; }
+
+.primary {
+  width: 100%;
+  padding: 9px;
+  font-weight: 600;
+  color: #fff;
+  background: #2d6cb5;
+  border: 1px solid #3b83d4;
+}
+
+.primary:hover { background: #3579c6; }
+.primary:disabled { opacity: 0.5; cursor: default; }
+
+.hint {
+  margin: 4px 0 8px;
+  color: #7d7d7d;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+#advanced h2 { cursor: pointer; }
+#advanced h2::before { content: "▸ "; }
+#advanced:not(.collapsed) h2::before { content: "▾ "; }
+#advanced.collapsed .body { display: none; }
+
+.status {
+  margin: 0;
+  padding: 0;
+  max-height: 190px;
+  overflow-y: auto;
+  color: #7f7f7f;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.status .e { color: #e39a9a; }
+.status .s { color: #b8ccb0; }

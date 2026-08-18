@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Talking Head Overlay</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <span class="title">Talking Head Overlay</span>
+  <button id="refresh" class="ghost" title="Re-read the sequence and selection">Refresh</button>
+</header>
+
+<div id="context" class="context">Reading sequence&hellip;</div>
+
+<canvas id="preview" class="preview"></canvas>
+
+<section class="group">
+  <h2>Shape</h2>
+  <div class="row">
+    <label for="width">Width</label>
+    <input type="range" id="width" min="120" max="1920" step="10" value="620">
+    <output id="widthOut">620</output>
+  </div>
+  <div class="row">
+    <label for="height">Height</label>
+    <input type="range" id="height" min="120" max="1080" step="10" value="620">
+    <output id="heightOut">620</output>
+  </div>
+  <div class="row">
+    <label for="radius">Corner</label>
+    <input type="range" id="radius" min="0" max="540" step="2" value="310">
+    <output id="radiusOut">310</output>
+  </div>
+  <div class="row buttons">
+    <button data-preset="circle" class="chip">Circle</button>
+    <button data-preset="squircle" class="chip">Squircle</button>
+    <button data-preset="card" class="chip">Card</button>
+    <button data-preset="square" class="chip">Square</button>
+  </div>
+</section>
+
+<section class="group">
+  <h2>Position</h2>
+  <div class="row">
+    <label for="posX">X</label>
+    <input type="range" id="posX" min="0" max="100" step="0.5" value="72">
+    <output id="posXOut">72%</output>
+  </div>
+  <div class="row">
+    <label for="posY">Y</label>
+    <input type="range" id="posY" min="0" max="100" step="0.5" value="66">
+    <output id="posYOut">66%</output>
+  </div>
+  <div class="row buttons">
+    <button data-corner="tl" class="chip">↖</button>
+    <button data-corner="tr" class="chip">↗</button>
+    <button data-corner="c"  class="chip">●</button>
+    <button data-corner="bl" class="chip">↙</button>
+    <button data-corner="br" class="chip">↘</button>
+  </div>
+</section>
+
+<section class="group">
+  <h2>Border</h2>
+  <div class="row">
+    <label for="borderWidth">Width</label>
+    <input type="range" id="borderWidth" min="0" max="40" step="1" value="8">
+    <output id="borderWidthOut">8</output>
+  </div>
+  <div class="row">
+    <label for="borderColor">Colour</label>
+    <input type="color" id="borderColor" value="#f5c542">
+    <input type="text" id="borderHex" class="hex" value="#f5c542" spellcheck="false">
+  </div>
+  <div class="row">
+    <label for="shadow">Shadow</label>
+    <input type="range" id="shadow" min="0" max="60" step="1" value="0">
+    <output id="shadowOut">0</output>
+  </div>
+</section>
+
+<section class="group">
+  <h2>Animation</h2>
+  <div class="row">
+    <label for="inDur">In</label>
+    <input type="range" id="inDur" min="0" max="2" step="0.05" value="0.45">
+    <output id="inDurOut">0.45s</output>
+  </div>
+  <div class="row">
+    <label for="outDur">Out</label>
+    <input type="range" id="outDur" min="0" max="2" step="0.05" value="0.35">
+    <output id="outDurOut">0.35s</output>
+  </div>
+  <div class="row">
+    <label for="overshoot">Pop</label>
+    <input type="range" id="overshoot" min="100" max="140" step="1" value="112">
+    <output id="overshootOut">112%</output>
+  </div>
+  <div class="row check">
+    <label><input type="checkbox" id="animateHead" checked> Scale the talking head with the shape</label>
+  </div>
+</section>
+
+<section class="group collapsed" id="advanced">
+  <h2 class="toggle">Advanced</h2>
+  <div class="body">
+    <div class="row check">
+      <label><input type="checkbox" id="clipTimeBase"> Keyframe times are clip-relative</label>
+    </div>
+    <p class="hint">
+      Premiere is inconsistent across versions about whether keyframe times on a
+      timeline clip are measured from the start of the sequence or the start of
+      the clip. If the pop lands in the wrong place, flip this and re-apply.
+    </p>
+    <div class="row check">
+      <label><input type="checkbox" id="keepAssets" checked> Keep generated PNGs on disk</label>
+    </div>
+  </div>
+</section>
+
+<div class="actions">
+  <button id="apply" class="primary">Apply to selected clip</button>
+</div>
+
+<pre id="status" class="status"></pre>
+
+<script src="js/CSInterface.js"></script>
+<script src="js/shapes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
