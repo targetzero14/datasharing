@@ -21,8 +21,8 @@ import styles as S
 
 FONT_DIR = os.environ.get('FONT_DIR', os.path.join(os.path.dirname(__file__), '..', 'fonts'))
 FONT_FILES = {
-    'serif': 'SS4-Regular.ttf', 'serif-it': 'SS4-Italic.ttf', 'serif-semi': 'SS4-Semibold.ttf',
-    'inter': 'Inter-Regular.ttf', 'inter-semi': 'Inter-SemiBold.ttf', 'inter-bold': 'Inter-Bold.ttf',
+    'serif': 'EBG-Regular.ttf', 'serif-it': 'EBG-Italic.ttf', 'serif-semi': 'EBG-SemiBold.ttf',
+    'sans': 'Jost-Regular.ttf', 'sans-medium': 'Jost-Medium.ttf', 'sans-semi': 'Jost-SemiBold.ttf',
 }
 for key, fn in FONT_FILES.items():
     pdfmetrics.registerFont(TTFont(key, os.path.join(FONT_DIR, fn)))
@@ -51,16 +51,14 @@ def pstyle(name):
         if r['hyph']:
             kw.update(hyphenationLang='en_US', embeddedHyphenation=1, uriWasteReduce=0.3)
         if name == 'Numbered List':
-            kw.update(bulletFontName='inter', bulletFontSize=r['size'], bulletIndent=0)
+            kw.update(bulletFontName='sans', bulletFontSize=r['size'], bulletIndent=0)
         _pstyles[name] = ParagraphStyle(name, **kw)
     return _pstyles[name]
 
 
 def track(text, amount):
-    """Approximate tracking with hair spaces (proof only)."""
-    if amount < 100:
-        return text
-    return '\u200a'.join(text.replace(' ', '  '))
+    """Tracking is set in the IDML styles; the proof leaves caps untracked."""
+    return text
 
 
 def markup(runs, style):
@@ -254,7 +252,7 @@ class Book:
         return str(idx - self.arabic_start + 1)
 
     def folio(self, idx):
-        self.c.setFont('inter', 9)
+        self.c.setFont('sans', 9.5)
         self.c.setFillColor(color('Mid Gray'))
         self.c.drawCentredString((M.M_IN if idx % 2 == 0 else M.M_OUT) + M.TW / 2,
                                  39.5, self.label(idx))
@@ -350,7 +348,7 @@ class Book:
             if s['kind'] == 'chapter' and s.get('toc'):
                 num = self.toc_pages.get(s['title'], '')
                 rows.append([Paragraph(escape(s['toc']), pstyle('Contents Entry')),
-                             Paragraph('<font name="inter">%s</font>' % num,
+                             Paragraph('<font name="sans">%s</font>' % num,
                                        ParagraphStyle('tn', parent=pstyle('Contents Entry'),
                                                       alignment=TA_RIGHT))])
         t = Table(rows, colWidths=[M.TW - 30, 30], hAlign='LEFT')

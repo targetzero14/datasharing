@@ -7,7 +7,7 @@ pip install reportlab pyphen fonttools brotli
 FONT_DIR=/path/to/ttfs python3 build.py Manuscript_Tagged.docx out/
 ```
 
-`FONT_DIR` must hold Inter-Regular/SemiBold/Bold.ttf and SS4-Regular/Italic/Semibold.ttf (used for the proof and page planning).
+`FONT_DIR` must hold EBG-Regular/Italic/SemiBold.ttf and Jost-Regular/Medium/SemiBold.ttf (used for the proof and page planning).
 
 - `parse_docx.py`: reads the docx and drops layout tags and notes
 - `model.py`: book structure, plus the layout decisions applied to the text

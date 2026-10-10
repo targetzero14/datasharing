@@ -163,7 +163,7 @@ def styles_xml():
             '<ParagraphStyle Self="ParagraphStyle/$ID/[No paragraph style]" Name="$ID/[No paragraph style]" '
             'Imported="false" FontStyle="Regular" PointSize="11" FillColor="Color/Black" '
             'Hyphenation="true"><Properties><Leading type="unit">15.5</Leading>'
-            '<AppliedFont type="string">Source Serif 4</AppliedFont></Properties></ParagraphStyle>',
+            '<AppliedFont type="string">EB Garamond</AppliedFont></Properties></ParagraphStyle>',
             '<ParagraphStyle Self="ParagraphStyle/$ID/NormalParagraphStyle" Name="$ID/NormalParagraphStyle" '
             'Imported="false" NextStyle="ParagraphStyle/$ID/NormalParagraphStyle" KeyboardShortcut="0 0">'
             '<Properties><BasedOn type="string">$ID/[No paragraph style]</BasedOn></Properties></ParagraphStyle>']
@@ -419,7 +419,7 @@ def write(sections, pages, labels, arabic_start, out_path):
                 if c['kind'] == 'chapter' and c.get('toc'):
                     items.append({'t': 'p', 'style': 'Contents Entry',
                                   'runs': [(c['toc'], None), ('\t', None),
-                                           (labels[c['start']], 'Inter Numeral')]})
+                                           (labels[c['start']], 'Sans Numeral')]})
             stories[sid] = story_items(items)
         else:
             stories[sid] = story_items(s['items'])

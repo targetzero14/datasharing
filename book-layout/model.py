@@ -191,7 +191,7 @@ def build_sections(docx_path):
             continue
         if b['num']:
             list_no += 1
-            runs = [(f'{list_no}.', 'Inter Numeral'), ('\t', None)] + body_runs(b['runs'], False)
+            runs = [(f'{list_no}.', 'Sans Numeral'), ('\t', None)] + body_runs(b['runs'], False)
             cur['items'].append({'t': 'p', 'style': 'Numbered List', 'runs': runs})
             continue
         list_no = 0
@@ -212,12 +212,9 @@ def build_sections(docx_path):
         for k, it in enumerate(items):
             if it['t'] == 'band':
                 for pair in it['pairs']:
-                    # G2: the requested break ("…years they stay,") cannot fit one
-                    # line at 12 pt in a 6x9 band, so it sets as three centered lines.
+                    # G2: break after "years they stay," so the referral clause sits alone on line 2
                     if pair[1].startswith('Average sale × times they buy'):
-                        pair[1] = ('Average sale × times they buy per year' + LSEP +
-                                   '× years they stay,' + LSEP +
-                                   'then add the value of customers they refer')
+                        pair[1] = pair[1].replace('years they stay, then', 'years they stay,' + LSEP + 'then')
                 if it['pairs'][0][0] == 'THE TEST FOR EVERYTHING ELSE':
                     it['pairs'].append(['', CH8_SECOND_LINE])
             # Worksheet 8 steps 1 and 3 have no table: give them write-in lines
